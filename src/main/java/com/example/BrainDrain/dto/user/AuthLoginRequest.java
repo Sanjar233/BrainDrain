@@ -1,11 +1,13 @@
 package com.example.BrainDrain.dto.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthLoginRequest {
     private String username;
-    private String password;
+    String password;
 }

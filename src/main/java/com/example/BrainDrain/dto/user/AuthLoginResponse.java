@@ -1,12 +1,12 @@
 package com.example.BrainDrain.dto.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
+@Data
+@Builder
 public class AuthLoginResponse {
-    private String token;
+    @JsonProperty("access_token")
+    private String accessToken;
 }
