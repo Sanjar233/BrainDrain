@@ -22,8 +22,5 @@ public class UserController {
     public ResponseEntity<String> demo(){
         return ResponseEntity.ok("aaaaa");
     }
-    @PostMapping("/solving")
-    public String solve(@RequestBody TaskSolvingRequest request){
-        return taskService.solve(request);
-    }
+
 }
