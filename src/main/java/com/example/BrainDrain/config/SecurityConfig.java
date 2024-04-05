@@ -44,8 +44,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/admin/**").hasAnyRole(ADMIN.name())
                                 .anyRequest()
-                                //.permitAll()
-                                .authenticated()
+                                .permitAll()
+//                                .authenticated()
                 )
                 .userDetailsService(userDetailsService)
                 .sessionManagement(session->session

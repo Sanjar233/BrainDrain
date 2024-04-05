@@ -8,6 +8,7 @@ import com.example.BrainDrain.dto.user.UserRegisterResponse;
 import com.example.BrainDrain.entities.User;
 import com.example.BrainDrain.entities.Token;
 import com.example.BrainDrain.enums.Role;
+import com.example.BrainDrain.enums.TaskDifficulty;
 import com.example.BrainDrain.enums.TokenType;
 import com.example.BrainDrain.exceptions.BadCredentialsException;
 import com.example.BrainDrain.exceptions.BadRequestException;
@@ -51,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(request.getEmail());
         user.setRole(Role.USER);
         user.setScore(0);
-        user.setRank("Beginner");
+        user.setRank(String.valueOf(TaskDifficulty.Beginner));
         user.setSolved_tasks(0);
         user.setCreated_tasks(0);
         userRepository.save(user);
