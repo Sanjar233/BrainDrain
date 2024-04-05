@@ -18,7 +18,7 @@ public class JwtService {
     final String SECRET_KEY = "c8f8a32ec174373ba9369ac6e46064d8e7ca9afc9b09fbb45f701e526e6cd06f";
     private Claims extractAllClaims(String token){
         return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey())
+                .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -47,12 +47,12 @@ public class JwtService {
                 .builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 84600000))
-                .signWith(getSigningKey())
+                .setExpiration(new Date(System.currentTimeMillis() + 846000))
+                .signWith(getSignInKey())
                 .compact();
         return token;
     }
-    private SecretKey getSigningKey(){
+    private SecretKey getSignInKey(){
 
         byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);

@@ -1,8 +1,8 @@
 package com.example.BrainDrain.entities;
 import com.example.BrainDrain.enums.Role;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user_table")
 public class User  implements UserDetails {
@@ -28,6 +32,7 @@ public class User  implements UserDetails {
     private int solved_tasks;
     @Enumerated
     private Role role;
+
 
     public String getUsername() {
         return username;

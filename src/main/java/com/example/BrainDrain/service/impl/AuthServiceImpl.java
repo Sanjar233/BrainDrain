@@ -66,15 +66,39 @@ public class AuthServiceImpl implements AuthService {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            authLoginRequest.getUsername(),authLoginRequest.getPassword()
+                            authLoginRequest.getUsername(),
+                            authLoginRequest.getPassword()
                     ));
         }catch (org.springframework.security.authentication.BadCredentialsException e){
             throw new BadCredentialsException("Credentials are incorrect!");
         }
         String token = jwtService.generateToken(user);
-
-        return new AuthLoginResponse(token);
+        revokeAllUserTokens(user);
+        saveUserToken(user, token);
+//        return new AuthLoginResponse(token);
+        return AuthLoginResponse.builder()
+            .accessToken(token)
+            .build();
     }
-
+    public void revokeAllUserTokens(User user) {
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+        if (validUserTokens.isEmpty())
+          return;
+        validUserTokens.forEach(token -> {
+          token.setExpired(true);
+          token.setRevoked(true);
+        });
+        tokenRepository.saveAll(validUserTokens);
+    }
+    public void saveUserToken(User user, String jwtToken) {
+        var token = Token.builder()
+        .user(user)
+        .token(jwtToken)
+        .tokenType(TokenType.BEARER)
+        .expired(false)
+        .revoked(false)
+        .build();
+        tokenRepository.save(token);
+    }
 
 }
