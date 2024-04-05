@@ -38,9 +38,11 @@ public class SecurityConfig {
                                         "/swagger-ui.html",
                                         "/tasks/**")
                                 .permitAll()
-                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+//                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
                                 .anyRequest()
-                                .authenticated()
+                                .permitAll()
+                                //.authenticated()
+
                 ).userDetailsService(userDetailsService)
                 .sessionManagement(session->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

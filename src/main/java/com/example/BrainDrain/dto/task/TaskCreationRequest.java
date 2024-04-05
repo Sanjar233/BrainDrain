@@ -12,7 +12,6 @@ public class TaskCreationRequest {
     private int points;
     private String category;
     private String answer;
-    private int solved;
     private String author;
     private TaskDifficulty difficulty;
 }
