@@ -28,7 +28,7 @@ public class User  implements UserDetails {
     private String rank;
     private int created_tasks;
     private int solved_tasks;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
 

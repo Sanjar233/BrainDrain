@@ -11,6 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public interface AuthService {
     UserRegisterResponse register(UserRegisterRequest userRegisterRequest);
     AuthLoginResponse login(AuthLoginRequest authLoginRequest);
-    void revokeAllUserTokens(User user);
-    void saveUserToken(User user,String token);
+//    void revokeAllUserTokens(User user);
+//    void saveUserToken(User user,String token);
 }

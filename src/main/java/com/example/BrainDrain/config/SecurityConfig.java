@@ -42,10 +42,10 @@ public class SecurityConfig {
                                         "/swagger-ui.html",
                                         "/tasks/**")
                                 .permitAll()
-                                .requestMatchers("/admin/**").hasAnyRole(ADMIN.name())
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest()
-                                .permitAll()
-//                                .authenticated()
+//                                .permitAll()
+                                .authenticated()
                 )
                 .userDetailsService(userDetailsService)
                 .sessionManagement(session->session

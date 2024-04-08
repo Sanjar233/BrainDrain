@@ -1,6 +1,6 @@
 package com.example.BrainDrain.config;
 
-import com.example.BrainDrain.repositories.TokenRepository;
+//import com.example.BrainDrain.repositories.TokenRepository;
 import com.example.BrainDrain.service.impl.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -22,7 +22,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsServiceImpl userDetailsService;
-    private final TokenRepository tokenRepository;
+//    private final TokenRepository tokenRepository;
 
     @Override
     protected void doFilterInternal(
@@ -44,10 +44,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String username = jwtService.extractUsername(token);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            var isTokenValid = tokenRepository.findByToken(token)
-                    .map(t -> !t.isExpired() && !t.isRevoked())
-                    .orElse(false);
-            if (jwtService.isTokenValid(token, userDetails) && isTokenValid) {
+//            var isTokenValid = tokenRepository.findByToken(token)
+//                    .map(t -> !t.isExpired() && !t.isRevoked())
+//                    .orElse(false);
+            if (jwtService.isTokenValid(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
