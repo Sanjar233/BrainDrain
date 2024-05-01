@@ -9,7 +9,6 @@ import com.example.BrainDrain.entities.User;
 //import com.example.BrainDrain.entities.Token;
 import com.example.BrainDrain.enums.Role;
 import com.example.BrainDrain.enums.TaskDifficulty;
-import com.example.BrainDrain.enums.TokenType;
 import com.example.BrainDrain.exceptions.BadCredentialsException;
 import com.example.BrainDrain.exceptions.BadRequestException;
 import com.example.BrainDrain.repositories.UserRepository;

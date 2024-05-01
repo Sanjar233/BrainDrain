@@ -32,16 +32,9 @@ public class User  implements UserDetails {
     private Role role;
 
 
-
-    public String getUsername() {
-        return username;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role == null)
-            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_DEFAULT"));
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+        return role.getAuthorities();
     }
 
     @Override
